@@ -1,0 +1,41 @@
+Question #3: Compressing Strings
+Write an algorithm that takes a string with repeated characters and compresses them, using a number to show how many times the repeated character has been compressed. For instance, aaa would be written as 3a. Solve the problem with and without recursion.
+
+Example
+Input: "aaabccdddda"
+
+Output: "3ab2c4da"
+
+//Solution 1
+function compressingStrings (string) {
+  array = string.split("");
+  output = []
+  let counter = 1;
+  for (let i = 0; i < array.length ; i++) {
+    if (array[i] == array[i+1]) {
+      counter ++;
+    } else if (array[i] != array[i+1] && counter != 1) {
+      output.push(counter + array[i])
+      counter = 1;
+    } else {
+      output.push(array[i]);
+    }
+  }
+  return output.join("");
+}
+
+//Solution 2 with recursion
+function compressingStrings (string, counter) {
+  if (string === "") {
+    return "";
+  } else if (string[0] === string[1]) {
+    counter ++;
+    return compressingStrings(string.substring(1), counter);
+  } else {
+    if (counter != 1) {
+      return counter + string[0] + compressingStrings(string.substring(1), 1);
+    } else {
+      return string[0] + compressingStrings(string.substring(1), 1);
+    }
+  }
+}
