@@ -40,3 +40,14 @@ function replaceSpaces(string) {
   let output = outputArray.join("");
   return output;
 }
+
+//Solution 3 with recursion
+function replaceSpaces(string) {
+  if (string === "") {
+    return "";
+  } else if (string[0] === " ") {
+    return "%20" + replaceSpaces(string.substring(1));
+  } else {
+    return string[0] + replaceSpaces(string.substring(1));
+  }
+}
