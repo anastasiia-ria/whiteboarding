@@ -1,0 +1,47 @@
+// input = “hello world”
+// turn input into array
+// loop through array
+// check if elem == “ “
+// if yes => replace with “%20”
+// if no => skip
+// return joined array
+
+
+//string = “hello world”
+function replaceSpace(string) {
+	let array = string.split(“”); //array = [“h”, … ,“d”]
+	for (let i= 0; I < array.length; I++) {
+		if (array[I] === “ “ ) {
+			array[I] = “%20”; // [“h”,”e”,”l”,”l”,”o”,”%20”…”d”]
+		}
+	}
+	return array.join(“”);
+}
+
+//solution 2
+
+function replaceSpace(string) {
+	return string(“ ”).join(“%20”);
+}
+
+// solution with recursion
+
+// if statement (string = “”) => return “”;
+// if statement (string = “ “) => return “%20” + replaceSpace(string[1:])
+// else return string[0] + replaceSpace(string[1:])
+
+
+//string = “hello world”
+function replaceSpace(string) { //string = “”
+	if (string === “”) {
+		return “”;
+	} else if (string[0] === “ “) {
+		return “%20” + replaceSpaces(string.substring(1));
+	} else {
+		return string[0] + replaceSpaces(string.substring(1));
+	}
+
+}
+
+//return “h” + “e” + “l” + “l” + “o” + “%20” + “w” + “o” + “r" + ”l” + ”d” + “”
+“hello%20world”
